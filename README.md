@@ -18,4 +18,5 @@ Output: Print out the resulting pascal triangle up to the requested depth in row
 --------------------
 
 stack ghci
+
 main

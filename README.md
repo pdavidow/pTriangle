@@ -14,3 +14,8 @@ A Pascal's triangle row is constructed by looking at the previous row and adding
 Input: Your program should read lines from standard input. Each line contains a positive integer which indicates the depth of the triangle (1 based).
 
 Output: Print out the resulting pascal triangle up to the requested depth in row major form.
+
+--------------------
+
+stack ghci
+main

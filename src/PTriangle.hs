@@ -19,26 +19,25 @@ pTriangle depth =
             let
                 f :: PTriangle -> Int -> PTriangle 
                 f acc n = 
+                    -- Since triangle is equilateral, n is both depth and row length
                     let
-                        rowLen = n -- equilateral triangle
-                    
+                        newRow = map formula [1 .. n] 
+
                         formula :: Int -> Int
                         formula k = 
-                            case (k == 1) || (k == rowLen) of
-                                True ->
-                                    1
-
-                                False ->
-                                    let 
-                                        priorRow = atDef [] acc $ n - 2
-                                        topLeft  = atDef 0 priorRow $ k - 2
-                                        topRight = atDef 0 priorRow $ k - 1
-                                    in
-                                        topLeft + topRight                    
+                            if (k == 1) || (k == n) then
+                                1
+                            else
+                                let 
+                                    priorRow = head acc 
+                                    topLeft  = atDef 0 priorRow $ k - 2
+                                    topRight = atDef 0 priorRow $ k - 1
+                                in
+                                    topLeft + topRight 
                     in
-                        acc ++ [map formula [1 .. rowLen]]                  
+                        newRow : acc               
             in
-                Right $ foldl' f [] [1 .. depth]
+                Right $ reverse $ foldl' f [] [1 .. depth]   
 
 
 toRowMajor :: PTriangle -> String
